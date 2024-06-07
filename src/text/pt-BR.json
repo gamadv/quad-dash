@@ -1,0 +1,14 @@
+{
+  "dash": {
+    "title": "Quad.Dash",
+    "footer": "Painel do parceiro \u00A9 Quad.Dash -"
+  },
+  "login": {
+    "title": "Acessar painel",
+    "subtitle": "Acompanhe suas vendas pelo painel do parceiro!",
+    "form": {
+      "inputLabel": "Seu e-mail",
+      "submitButton": "Acessar painel"
+    }
+  }
+}
