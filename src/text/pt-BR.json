@@ -4,11 +4,42 @@
     "footer": "Painel do parceiro \u00A9 Quad.Dash -"
   },
   "login": {
+    "SEO": "Login",
     "title": "Acessar painel",
     "subtitle": "Acompanhe suas vendas pelo painel do parceiro!",
     "form": {
       "inputLabel": "Seu e-mail",
       "submitButton": "Acessar painel"
+    },
+    "request": {
+      "success": "Enviamos um link de autenticação para seu e-mail.",
+      "error": "Credenciais inválidas.",
+      "resend": "Reenviar"
+    }
+  },
+  "register": {
+    "SEO": "Cadastro",
+    "title": "Criar conta grátis",
+    "subtitle": "Seja um parceiro e comece suas vendas!",
+    "label": "Cadastrar Estabelecimento",
+    "sendoToLoginLabel": "Login",
+    "toLoginBtn": "Fazer login",
+    "form": {
+      "companyName": "Nome do estabelecimento",
+      "managerName": "Nome do Responsável",
+      "email": "Seu e-mail",
+      "phone": "Seu celular",
+      "submitButton": "Finalizar cadastro"
+    },
+    "request": {
+      "success": "Enviamos um link de autenticação para seu e-mail.",
+      "error": "Erro ao cadastrar estabelecimento."
+    },
+    "lgpd": {
+      "text1": "Ao continuar, você concorda com nossos ",
+      "text2": "termos de serviço",
+      "text3": " e ",
+      "text4": "políticas de privacidade"
     }
   }
 }
