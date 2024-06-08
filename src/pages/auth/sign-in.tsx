@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -28,9 +29,9 @@ export function SignIn() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      toast.success('Enviamos um link de autenticação para seu e-mail.', {
+      toast.success(texts.login.request.success, {
         action: {
-          label: 'Reenviar',
+          label: texts.login.request.resend,
           onClick: () => {
             handleSignIn(data)
           },
@@ -38,13 +39,16 @@ export function SignIn() {
         closeButton: true,
       })
     } catch (error) {
-      toast.error('Credenciais inválidas.')
+      toast.error(texts.login.request.error)
     }
   }
 
   return (
     <>
-      <Helmet title="Login" />
+      <Helmet title={texts.register.SEO} />
+      <Button variant="ghost" asChild className="absolute right-8 top-8">
+        <Link to="/sign-up">{texts.register.label}</Link>
+      </Button>
 
       <section className="p-8">
         <div className="flex w-[350px] flex-col justify-center gap-6">
