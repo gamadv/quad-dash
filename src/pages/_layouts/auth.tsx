@@ -1,6 +1,7 @@
 import { Dice4 } from 'lucide-react'
 import { Outlet } from 'react-router-dom'
 
+import { ThemeToggle } from '@/components/theme-toggle'
 import texts from '@/text/pt-BR.json'
 
 export function AuthLayout() {
@@ -11,6 +12,10 @@ export function AuthLayout() {
         <div className="flex items-center gap-3 text-lg text-foreground">
           <Dice4 className="h-10 w-10" />
           <span className="font-semibold">{texts.dash.title}</span>
+
+          <div className="ml-auto">
+            <ThemeToggle />
+          </div>
         </div>
 
         <footer className="text-sm">
@@ -18,7 +23,7 @@ export function AuthLayout() {
         </footer>
       </div>
 
-      <div className="relative flex flex-col items-center justify-center">
+      <div className="relative flex flex-col items-center justify-center antialiased">
         <Outlet />
       </div>
     </section>
