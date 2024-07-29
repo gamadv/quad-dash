@@ -1,3 +1,4 @@
+import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import constants from '@/constants/index.json'
+import { registerCompany } from '@/services/registerCompany'
 import texts from '@/text/pt-BR.json'
 
 const signUpForm = z.object({
@@ -28,17 +30,25 @@ export function SignUp() {
     formState: { isSubmitting },
   } = useForm<SignUpForm>()
 
+  const { mutateAsync: registerCompanyFn } = useMutation({
+    mutationFn: registerCompany,
+  })
+
   async function handleSignUp(data: SignUpForm) {
     try {
-      console.log(data)
-
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      await registerCompanyFn({
+        companyName: data.companyName,
+        managerName: data.managerName,
+        email: data.email,
+        phone: data.phone,
+      })
 
       toast.success(texts.register.request.success, {
         action: {
           label: texts.register.sendoToLoginLabel,
-          onClick: () => navigate('/sign-in'),
+          onClick: () => navigate(`/sign-in?email=${data.email}`),
         },
+        duration: 10000,
       })
     } catch (error) {
       toast.error(texts.register.request.error)
