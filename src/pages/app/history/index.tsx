@@ -1,4 +1,7 @@
+import { useQuery } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
+import { useSearchParams } from 'react-router-dom'
+import { z } from 'zod'
 
 import { Pagination } from '@/components/pagination'
 import {
@@ -8,11 +11,42 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { getOrders } from '@/services/get-orders'
 
 import { HistoryTableFilters } from './history-table-filter'
 import { HistoryTableRow } from './history-table-row'
+import { HistoryTableSkeleton } from './loadingState/history-table-skeleton'
 
 export function History() {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  const orderId = searchParams.get('orderId')
+  const customerName = searchParams.get('customerName')
+  const status = searchParams.get('status')
+
+  const pageIndex = z.coerce
+    .number()
+    .transform((page) => page - 1)
+    .parse(searchParams.get('page') ?? '1')
+
+  const { data: result, isLoading: isLoadingOrders } = useQuery({
+    queryKey: ['orders', pageIndex, orderId, customerName, status],
+    queryFn: () =>
+      getOrders({
+        pageIndex,
+        orderId,
+        customerName,
+        status: status === 'all' ? null : status,
+      }),
+  })
+
+  function handlePaginate(pageIndex: number) {
+    setSearchParams((state) => {
+      state.set('page', (pageIndex + 1).toString())
+
+      return state
+    })
+  }
   return (
     <>
       <Helmet title="Histórico" />
@@ -24,7 +58,7 @@ export function History() {
           <HistoryTableFilters />
 
           <div className="rounded-md border">
-            <Table>
+            <Table className="overflow-hidden">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[64px]"></TableHead>
@@ -38,13 +72,22 @@ export function History() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <HistoryTableRow key={i} />
-                ))}
+                {isLoadingOrders && <HistoryTableSkeleton />}
+                {result &&
+                  result.orders.map((order) => {
+                    return <HistoryTableRow key={order.orderId} order={order} />
+                  })}
               </TableBody>
             </Table>
           </div>
-          <Pagination pageIndex={0} totalCount={105} perPage={10} />
+          {result && (
+            <Pagination
+              onPageChange={handlePaginate}
+              pageIndex={result.meta.pageIndex}
+              totalCount={result.meta.totalCount}
+              perPage={result.meta.perPage}
+            />
+          )}
         </div>
       </div>
     </>
