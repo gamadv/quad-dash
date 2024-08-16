@@ -53,7 +53,7 @@ export function SignIn() {
 
   return (
     <>
-      <Helmet title={texts.register.SEO} />
+      <Helmet title={texts.login.SEO} />
       <Button variant="ghost" asChild className="absolute right-8 top-8">
         <Link to="/sign-up">{texts.register.label}</Link>
       </Button>
