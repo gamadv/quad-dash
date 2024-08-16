@@ -1,15 +1,8 @@
-import { setupWorker } from 'msw/browser'
-
-import { env } from '@/env'
-
-import { signInMock } from './_mock-sign-in'
-
-export const worker = setupWorker(signInMock)
-
-export async function enableMSW() {
-  if (env.MODE !== 'test') {
-    return
-  }
-
-  await worker.start()
-}
+export { getDailyRevenueInPeriodMock } from './_mock-get-daily-revenue-in-period'
+export { getDayOrdersAmountMock } from './_mock-get-day-orders-amount'
+export { getMonthCanceledOrdersAmountMock } from './_mock-get-month-canceled-orders-amout'
+export { getMonthOrdersAmountMock } from './_mock-get-month-orders-amount'
+export { getMonthRevenueMock } from './_mock-get-month-revenue'
+export { getPopularProductsMock } from './_mock-get-popular-products'
+export { registerCompanyMock } from './_mock-register-company'
+export { signInMock } from './_mock-sign-in'

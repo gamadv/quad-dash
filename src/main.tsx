@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { enableMSW } from './__tests__/mocks'
+import { enableMSW } from './__tests__/msw'
 import { App } from './App'
 
 enableMSW().then(() => {
