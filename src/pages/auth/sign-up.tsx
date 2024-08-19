@@ -45,7 +45,7 @@ export function SignUp() {
 
       toast.success(texts.register.request.success, {
         action: {
-          label: texts.register.sendoToLoginLabel,
+          label: 'Realizar login',
           onClick: () => navigate(`/sign-in?email=${data.email}`),
         },
         duration: 10000,

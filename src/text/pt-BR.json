@@ -32,7 +32,7 @@
       "submitButton": "Finalizar cadastro"
     },
     "request": {
-      "success": "Enviamos um link de autenticação para seu e-mail.",
+      "success": "Cadastro Realizado com Sucesso",
       "error": "Erro ao cadastrar estabelecimento."
     },
     "lgpd": {
