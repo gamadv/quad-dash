@@ -16,7 +16,7 @@ export function AppLayout() {
           const status = error.response?.status
           const statusText = error.response?.statusText
 
-          if (status === 401 && statusText === 'Unauthorized') {
+          if (status === 401 && statusText?.includes('Unauthorized')) {
             navigate('/sign-in', { replace: true })
           } else {
             throw error
