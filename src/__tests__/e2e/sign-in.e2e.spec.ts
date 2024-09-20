@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('sign in successfully', async ({ page }) => {
-  await page.goto('/sign-in', { waitUntil: 'networkidle' })
+  await page.goto('/auth/sign-in', { waitUntil: 'networkidle' })
 
   await page.getByLabel('Seu e-mail').fill('quad@mock.com')
   await page.getByRole('button', { name: 'Acessar painel' }).click()
@@ -15,7 +15,7 @@ test('sign in successfully', async ({ page }) => {
 })
 
 test('sign in with wrong credentials', async ({ page }) => {
-  await page.goto('/sign-in', { waitUntil: 'networkidle' })
+  await page.goto('/auth/sign-in', { waitUntil: 'networkidle' })
 
   await page.getByLabel('Seu e-mail').fill('wrong@example.com')
   await page.getByRole('button', { name: 'Acessar painel' }).click()
@@ -27,10 +27,10 @@ test('sign in with wrong credentials', async ({ page }) => {
 })
 
 test('navigate to new company page', async ({ page }) => {
-  await page.goto('/sign-in', { waitUntil: 'networkidle' })
+  await page.goto('/auth/sign-in', { waitUntil: 'networkidle' })
 
   await page.getByRole('link', { name: 'Cadastrar Estabelecimento' }).click()
 
-  expect(page.url()).toContain('/sign-up')
+  expect(page.url()).toContain('/auth/sign-up')
   await page.waitForTimeout(2000)
 })

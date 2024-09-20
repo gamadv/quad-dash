@@ -26,15 +26,16 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/',
+    path: '/auth',
     element: <AuthLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: '/sign-in',
+        path: '/auth/sign-in',
         element: <SignIn />,
       },
       {
-        path: '/sign-up',
+        path: '/auth/sign-up',
         element: <SignUp />,
       },
     ],

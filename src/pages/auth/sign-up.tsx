@@ -46,7 +46,7 @@ export function SignUp() {
       toast.success(texts.register.request.success, {
         action: {
           label: 'Realizar login',
-          onClick: () => navigate(`/sign-in?email=${data.email}`),
+          onClick: () => navigate(`/auth/sign-in?email=${data.email}`),
         },
         duration: 10000,
       })
@@ -61,7 +61,7 @@ export function SignUp() {
 
       <div className="p-8">
         <Button variant="ghost" asChild className="absolute right-8 top-8">
-          <Link to="/sign-in">{texts.register.toLoginBtn}</Link>
+          <Link to="/auth/sign-in">{texts.register.toLoginBtn}</Link>
         </Button>
 
         <div className="flex w-[350px] flex-col justify-center gap-6">

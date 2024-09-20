@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test('sign up successfully', async ({ page }) => {
-  await page.goto('/sign-up', { waitUntil: 'networkidle' })
+  await page.goto('/auth/sign-up', { waitUntil: 'networkidle' })
 
   await page.getByLabel('Nome do estabelecimento').fill('Quad Mock')
   await page.getByLabel('Nome do Responsável').fill('Moacir Gama')
@@ -16,7 +16,7 @@ test('sign up successfully', async ({ page }) => {
 })
 
 test('sign up with error', async ({ page }) => {
-  await page.goto('/sign-up', { waitUntil: 'networkidle' })
+  await page.goto('/auth/sign-up', { waitUntil: 'networkidle' })
 
   await page.getByLabel('Nome do estabelecimento').fill('Invalid Name')
   await page.getByLabel('Nome do Responsável').fill('Moacir Gama')
@@ -31,9 +31,9 @@ test('sign up with error', async ({ page }) => {
 })
 
 test('navigate to login page', async ({ page }) => {
-  await page.goto('/sign-up', { waitUntil: 'networkidle' })
+  await page.goto('/auth/sign-up', { waitUntil: 'networkidle' })
 
   await page.getByRole('link', { name: 'Fazer login' }).click()
 
-  expect(page.url()).toContain('/sign-in')
+  expect(page.url()).toContain('/auth/sign-in')
 })

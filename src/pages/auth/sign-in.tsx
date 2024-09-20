@@ -12,7 +12,7 @@ import { signIn } from '@/services/sign-in'
 import texts from '@/text/pt-BR.json'
 
 const signInForm = z.object({
-  email: z.string().email(),
+  email: z.string().email().min(5, 'Email não preenchido'),
 })
 
 type SignInForm = z.infer<typeof signInForm>
@@ -55,7 +55,7 @@ export function SignIn() {
     <>
       <Helmet title={texts.login.SEO} />
       <Button variant="ghost" asChild className="absolute right-8 top-8">
-        <Link to="/sign-up">{texts.register.label}</Link>
+        <Link to="/auth/sign-up">{texts.register.label}</Link>
       </Button>
 
       <section className="p-8">
